@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/ede252b4-3129-42c6-b703-b7a7c2ad964c
+
 # sop
 
 A small, self-contained MIDI player for Linux that renders MIDI files

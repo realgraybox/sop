@@ -1,0 +1,7 @@
+binaries/
+midi_files/
+private/
+sound_fonts/
+versions/
+*.o
+sop

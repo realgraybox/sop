@@ -79,9 +79,8 @@ reads those values from the bank when it starts and applies them itself:
   (up to +20 % at controller value 127). Defaults are 40 and 0, as in GM.
 - The effects ring out at the end of a song instead of being cut off.
 
-If the bank has no send values at all (the case for the current built-in
-bank), none of this is active and the output is bit-for-bit what plain
-`tsf.h` produces. When sends are found, sop prints
+If the bank has no send values at all none of this is active and the output is 
+bit-for-bit what plain `tsf.h` produces. When sends are found, sop prints
 `Per-instrument reverb/chorus sends active.` at start.
 
 The effect code uses `tsf.h` internals (`tsf_voice_render`, the voice struct

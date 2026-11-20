@@ -8,7 +8,8 @@ right into the binary.
 
 It is the wavetable "cousin" of [mop](https://github.com/realgraybox/mop):
 where mop emulates an OPL3 FM chip for the classic AdLib sound, sop plays
-sampled instruments from a SoundFont.
+sampled instruments from a SoundFont. A static, uClibc-linked build with the
+built-in bank comes in at around **254 KB**, of which the bank is 205 KB.
 
 ## Why
 

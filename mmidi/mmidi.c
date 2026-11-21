@@ -363,7 +363,7 @@ int mm_load_bank_mem(mm_synth *s, const void *data, size_t size) {
     if (size < 12 || memcmp(d, "RIFF", 4) || memcmp(d + 8, "sfbk", 4)) return -1;
     static const char *const sid[] = {"smpl", "smdl"};
     static const char *const pid[] = {"phdr", "pbag", "pgen", "inst", "ibag", "igen", "shdr"};
-    Chunk sd[2] = {{0}}, pd[7] = {{0}};
+    Chunk sd[2] = {{0, 0}}, pd[7] = {{0, 0}};   /* all fields: gcc 3.4 -Wextra asks for them */
     uint32_t total = le32(d + 4) + 8 < size ? le32(d + 4) + 8 : (uint32_t)size;
     for (uint32_t o = 12; o + 12 <= total;) {
         uint32_t sz = le32(d + o + 4);

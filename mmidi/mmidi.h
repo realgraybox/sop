@@ -136,8 +136,8 @@ void mm_set_volume(mm_synth *s, float gain);
 
 /* send a live MIDI channel message (no file needed). It takes effect at the
    next 32-frame control block, at most 31 frames (0.7 ms at 44.1 kHz) later.
-   Status 0xFE (an mm_event of a format 2 song) releases all notes and resets
-   the channels, as the song does between its sequences */
+   Status 0xFE (an mm_event of a format 2 song) releases all sounding notes, as
+   the song does between its sequences; the channels keep their state */
 void mm_midi(mm_synth *s, int status, int d1, int d2);
 
 #ifndef MM_NO_OSS

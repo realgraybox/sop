@@ -693,11 +693,11 @@ void mm_midi(mm_synth *s, int status, int d1, int d2) {
     case 0xc0: s->c[ch].prog = d1; break;
     case 0xe0: s->c[ch].bend = ((d2 << 7 | d1) - 8192) / 8192.0; break;
     case 0xf0:
-        if (status == 0xfe) {                                 /* format 2: a new sequence starts */
+        if (status == 0xfe)       /* format 2: a new sequence starts. The sounding notes are
+                                     released; each channel keeps its program, bank, controllers
+                                     and pitch bend, which later sequences often rely on */
             for (int i = 0; i < MAXVOICE; i++)
                 if (s->v[i].on) { s->v[i].held = 0; release(&s->v[i]); }
-            reset_chans(s);
-        }
         break;
     }
 }
@@ -1128,8 +1128,9 @@ int mm_load_mem(mm_synth *s, const void *data, size_t size) {
     s->evtime = NULL;
     /* format 0 and 1: all tracks play together from tick 0. Format 2: each
        track is a sequence of its own; they play one after another, each
-       starting where the previous one ended, with the channels, the tempo
-       and the sounding notes reset in between (EV_RESET) */
+       starting where the previous one ended, with the sounding notes
+       released and the tempo back to 120 bpm in between (EV_RESET); the
+       channels keep their state */
     uint32_t base = 0;
     for (unsigned t = 0; t < tracks && pos + 8 <= size; ) {
         uint32_t len = be32(buf + pos + 4), end;
